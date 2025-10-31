@@ -221,3 +221,25 @@ img{max-width:100%;height:auto;display:block}
   .two-col{ grid-template-columns:1fr 1fr; align-items:start; }
   .upgrades{ order:1 } .reviews{ order:2 }
 }
+
+/* ===== BOTÓN: azul opaco con texto negro real ===== */
+.btn {
+  background-color: #00a8cf;   /* azul sólido */
+  color: #000 !important;      /* negro forzado */
+  border: none;
+  padding: .6rem 1.1rem;
+  border-radius: .55rem;
+  font-weight: 800;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  transition: background 0.2s ease, transform 0.1s ease-in-out;
+  text-shadow: none !important; /* sin brillo ni mezcla */
+  filter: none !important;      /* evitar que herede opacidad */
+}
+
+.btn:hover {
+  background-color: #0091b6;   /* un poco más oscuro al pasar el ratón */
+  color: #000 !important;      /* mantener texto negro */
+  transform: scale(1.03);
+}
