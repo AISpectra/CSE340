@@ -243,3 +243,39 @@ img{max-width:100%;height:auto;display:block}
   color: #000 !important;      /* mantener texto negro */
   transform: scale(1.03);
 }
+
+/* ===== Dynamic Nav Fix ===== */
+/* Aplica el mismo estilo aunque el <ul> no tenga class="menu" */
+.site-nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: .5rem;
+}
+
+.site-nav ul li {
+  flex: 1 1 0;
+}
+
+.site-nav ul a {
+  display: block;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background: var(--nav-pill);
+  padding: .5rem .5rem;
+  border-radius: .5rem;
+  font-weight: 600;
+  transition: filter .2s ease, transform .1s ease-in-out;
+}
+
+.site-nav ul a:hover {
+  filter: brightness(1.1);
+  transform: scale(1.03);
+}
+
+.site-nav ul a:visited {
+  color: #fff;
+}
