@@ -11,7 +11,7 @@
   --border:#d1d5db;
   --nav:#2f343b;
   --nav-pill:#3b4048;
-  --brand:#007aa6;      /* cian */
+  --brand:#0090D9;      /* cian */
   --brand-dark:#0091b6; /* cian más oscuro */
   --ring:rgba(0,168,207,.35);
 }
@@ -224,7 +224,7 @@ img{max-width:100%;height:auto;display:block}
 
 /* ===== BOTÓN: azul opaco con texto negro real ===== */
 .btn {
-  background-color: #007aa6;   /* azul sólido */
+  background-color: #0090D9;   /* azul sólido */
   color: #000 !important;      /* negro forzado */
   border: none;
   padding: .6rem 1.1rem;
