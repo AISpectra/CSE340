@@ -30,6 +30,13 @@ app.set("layout", "./layouts/layout")
  *************************/
 app.use(static)
 app.get("/", utilities.handleErrors(baseController.buildHome))
+
+// Error test route (Task 3, la vemos abajo)
+app.get(
+  "/trigger-error",
+  utilities.handleErrors(baseController.triggerError)
+)
+
 // Inventory routes
 app.use("/inv", inventoryRoute)
 

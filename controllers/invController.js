@@ -8,23 +8,40 @@ const invCont = {}
  *  Build inventory by classification view
  * ************************** */
 invCont.buildByClassificationId = async function (req, res, next) {
-  try {
-    const classification_id = req.params.classificationId
-    const data = await invModel.getInventoryByClassificationId(classification_id) // array de filas
-    const grid = await utilities.buildClassificationGrid(data)
-    const nav = await utilities.getNav()
+  const classification_id = req.params.classificationId
+  const data = await invModel.getInventoryByClassificationId(classification_id)
+  const grid = await utilities.buildClassificationGrid(data)
+  let nav = await utilities.getNav()
+  const className = data[0].classification_name
+  res.render("./inventory/classification", {
+    title: className + " vehicles",
+    nav,
+    grid,
+  })
+}
 
-    // Si hay al menos 1 vehículo, tomamos el nombre de la clasificación de la primera fila
-    const className = data.length ? data[0].classification_name : "No results"
+/* ***************************
+ *  Build single vehicle detail view
+ * ************************** */
+invCont.buildByInvId = async function (req, res, next) {
+  const invId = req.params.invId
+  const vehicleData = await invModel.getVehicleByInvId(invId)
+  let nav = await utilities.getNav()
 
-    res.render("./inventory/classification", {
-      title: `${className} vehicles`,
-      nav,
-      grid,
-    })
-  } catch (err) {
-    next(err)
+  if (!vehicleData) {
+    const error = new Error("Sorry, that vehicle could not be found.")
+    error.status = 404
+    return next(error)
   }
+
+  const details = await utilities.buildVehicleDetail(vehicleData)
+  const title = `${vehicleData.inv_year} ${vehicleData.inv_make} ${vehicleData.inv_model}`
+
+  res.render("./inventory/detail", {
+    title,
+    nav,
+    details,
+  })
 }
 
 module.exports = invCont
