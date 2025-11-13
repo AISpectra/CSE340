@@ -1,4 +1,15 @@
-<main>
-  <h1><%= title %></h1>
+<main class="section">
+  
+  <% if (typeof title !== 'undefined' && title) { %>
+    <h1><%= title %></h1>
+  <% } else { %>
+   
+    <h1>Inventory</h1>
+  <% } %>
+
+  
+  <%# messages() %>
+
+  
   <%- grid %>
 </main>
