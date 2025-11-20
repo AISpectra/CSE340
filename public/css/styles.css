@@ -388,3 +388,92 @@ footer .footer-inner {
   align-items: flex-start; 
   gap: 0.4rem;
 }
+
+
+.account-form {
+  max-width: 350px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background: #1e3456;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.account-form input {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+}
+
+.account-form button {
+  margin-top: 0.5rem;
+  padding: 0.6rem;
+  background: white;
+  color: black;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.signup-text {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+
+.register-wrapper,
+.login-wrapper {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #f7f9fc;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.account-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.account-form input {
+  padding: 0.6rem;
+  border-radius: 5px;
+  border: 1px solid #aaaaaa;
+}
+
+.account-form button {
+  background: #1d70d6;
+  color: white;
+  padding: 0.7rem;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.account-form button:hover {
+  background: #185bb0;
+}
+
+
+.password-rules {
+  font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.15); /* un poco translúcido */
+  padding: 0.7rem 0.9rem;
+  border-radius: 8px;
+  border-left: 4px solid #3b82f6;
+  margin-bottom: 0.5rem;
+  color: #e5e7eb;            /* texto casi blanco pero legible */
+}
+
+.password-rules ul {
+  margin: 0.4rem 0 0 1.2rem;
+}
+
+.password-rules li {
+  margin-bottom: 0.15rem;
+}
