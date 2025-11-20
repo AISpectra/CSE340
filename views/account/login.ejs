@@ -5,6 +5,14 @@
 
   <!-- Flash messages (si algún día las usas aquí) -->
   <%- messages() %>
+  <% if (errors) { %>
+    <ul class="notice">
+      <% errors.array().forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+
 
   <section class="login-wrapper">
     <form class="account-form" method="post" action="/account/login">
@@ -15,6 +23,7 @@
         id="account_email" 
         name="account_email" 
         required
+        value="<%= locals.account_email %>">
         placeholder="Enter your email"
       >
 
