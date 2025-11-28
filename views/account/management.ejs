@@ -1,0 +1,19 @@
+
+
+<main>
+  <% if (notice && notice.length) { %>
+    <div class="flash notice"><%= notice %></div>
+  <% } %>
+
+  <% if (errors && errors.length) { %>
+    <div class="errors">
+      <% errors.forEach(e => { %>
+        <p><%= e.msg %></p>
+      <% }) %>
+    </div>
+  <% } %>
+
+  <p>You're logged in.</p>
+</main>
+
+

@@ -66,4 +66,45 @@ router.get(
   utilities.handleErrors(invController.buildByInvId)
 )
 
+router.get(
+  "/getInventory/:classification_id",
+  utilities.handleErrors(invController.getInventoryJSON)
+)
+
+
+router.get(
+  "/edit/:inv_id",
+  utilities.checkLogin, 
+  utilities.handleErrors(invController.editInventoryView)
+)
+
+// Process inventory update
+router.post(
+  "/update",
+  invValidate.inventoryRules(),
+  invValidate.checkInvData,
+  utilities.handleErrors(invController.updateInventory)
+)
+
+// 🔁 UPDATE vehículo
+router.post(
+  "/update",
+  invValidate.inventoryRules(),   // mismas reglas que "add"
+  invValidate.checkUpdateData,       // nuevo middleware
+  utilities.handleErrors(invController.updateInventory)
+)
+
+// Delete inventory item - show confirmation view
+router.get(
+  "/delete/:inv_id",
+  utilities.handleErrors(invController.buildDeleteInventory)
+)
+
+// Delete inventory item - process delete
+router.post(
+  "/delete",
+  utilities.handleErrors(invController.deleteInventory)
+)
+
+
 module.exports = router

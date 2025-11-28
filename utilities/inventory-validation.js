@@ -91,7 +91,7 @@ invValidate.inventoryRules = () => {
 }
 
 /* ******************************
- * Check inventory data
+ * Check inventory data (ADD)
  * ***************************** */
 invValidate.checkInvData = async (req, res, next) => {
   const {
@@ -118,6 +118,57 @@ invValidate.checkInvData = async (req, res, next) => {
       nav,
       classificationList,
       errors,
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color,
+      classification_id,
+    })
+  }
+  next()
+}
+
+/* ******************************
+ * Check inventory data (UPDATE)
+ *  → vuelve a la vista de edición
+ * ***************************** */
+invValidate.checkUpdateData = async (req, res, next) => {
+  const {
+    inv_id,
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_miles,
+    inv_color,
+    classification_id,
+  } = req.body
+
+  let errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+
+    // mismo helper que en el controller, pero nombre que espera la vista:
+    const classificationSelect = await utilities.buildClassificationList(
+      classification_id
+    )
+
+    const itemName = `${inv_make} ${inv_model}`
+
+    return res.status(400).render("./inventory/edit-inventory", {
+      title: "Edit " + itemName,
+      nav,
+      classificationSelect,
+      errors,
+      inv_id,
       inv_make,
       inv_model,
       inv_year,
