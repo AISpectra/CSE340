@@ -1,19 +1,36 @@
 
 
-<main>
-  <% if (notice && notice.length) { %>
-    <div class="flash notice"><%= notice %></div>
-  <% } %>
+<h1><%= title %></h1>
 
-  <% if (errors && errors.length) { %>
-    <div class="errors">
-      <% errors.forEach(e => { %>
-        <p><%= e.msg %></p>
-      <% }) %>
-    </div>
-  <% } %>
+<%- messages() %>
 
-  <p>You're logged in.</p>
-</main>
+<% if (errors && errors.length) { %>
+  <div class="errors">
+    <% errors.forEach(e => { %>
+      <p><%= e.msg %></p>
+    <% }) %>
+  </div>
+<% } %>
+
+<% const user = locals.accountData %>
+
+<% if (user) { %>
+  <h2>Welcome <%= user.account_firstname %></h2>
+
+  <p>
+    <a href="/account/update/<%= user.account_id %>">
+      Update account information
+    </a>
+  </p>
+
+  <% if (user.account_type === "Employee" || user.account_type === "Admin") { %>
+    <h3>Inventory Management</h3>
+    <p>
+      <a href="/inv/">Manage Inventory</a>
+    </p>
+  <% } %>
+<% } else { %>
+  <p>Please <a href="/account/login">log in</a>.</p>
+<% } %>
 
 

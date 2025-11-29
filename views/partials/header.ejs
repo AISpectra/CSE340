@@ -2,24 +2,22 @@
   <div class="header-inner">
     <a class="brand" href="/" title="Return to home page">CSE Motors</a>
     <nav id="tools" aria-label="User account tools">
-      
-      <% if (locals.loggedin && locals.accountData) { %>
-        <!-- Enlace al account management -->
-        <li>
-          <a href="/account/">
-            Welcome <%= locals.accountData.account_firstname %>
-          </a>
-        </li>
-        <!-- Logout -->
-        <li>
-          <a href="/account/logout">Logout</a>
-        </li>
-      <% } else { %>
-        <!-- Solo si NO está logueado -->
-        <li>
-          <a href="/account/login">My Account</a>
-        </li>
-      <% } %>
+      <ul>
+        <% if (locals.loggedin && locals.accountData) { %>
+          <li>
+            <a href="/account/">
+              Welcome <%= locals.accountData.account_firstname %>
+            </a>
+          </li>
+          <li>
+            <a href="/account/logout">Logout</a>
+          </li>
+        <% } else { %>
+          <li>
+            <a href="/account/login">My Account</a>
+          </li>
+        <% } %>
+      </ul>
     </nav>
   </div>
 </header>

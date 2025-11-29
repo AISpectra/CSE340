@@ -1,74 +1,75 @@
-<main id="update-account">
-  <h1><%= title %></h1>
+<h1><%= title %></h1>
 
-  <%- messages() %>
+<%- messages() %>
 
-  <% if (errors) { %>
-    <ul class="notice">
-      <% errors.array().forEach(error => { %>
-        <li><%= error.msg %></li>
-      <% }) %>
-    </ul>
-  <% } %>
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
 
-  <!-- Formulario 1: Update de datos -->
-  <section>
-    <h2>Account Update</h2>
-    <form action="/account/update" method="post" id="accountUpdateForm">
-      <label for="account_firstname">First Name</label>
-      <input
-        type="text"
-        id="account_firstname"
-        name="account_firstname"
-        required
-        value="<%= account_firstname %>"
-      />
+<!-- Formulario 1: Update de datos -->
+<section>
+  <h2>Account Update</h2>
+  <form action="/account/update" method="post" id="accountUpdateForm" novalidate>
+    <label for="account_firstname">First Name</label>
+    <input
+      type="text"
+      id="account_firstname"
+      name="account_firstname"
+      required
+      value="<%= account_firstname %>"
+    />
 
-      <label for="account_lastname">Last Name</label>
-      <input
-        type="text"
-        id="account_lastname"
-        name="account_lastname"
-        required
-        value="<%= account_lastname %>"
-      />
+    <label for="account_lastname">Last Name</label>
+    <input
+      type="text"
+      id="account_lastname"
+      name="account_lastname"
+      required
+      value="<%= account_lastname %>"
+    />
 
-      <label for="account_email">Email</label>
-      <input
-        type="email"
-        id="account_email"
-        name="account_email"
-        required
-        value="<%= account_email %>"
-      />
+    <label for="account_email">Email</label>
+    <input
+      type="email"
+      id="account_email"
+      name="account_email"
+      required
+      value="<%= account_email %>"
+    />
 
-      <!-- Hidden account_id -->
-      <input type="hidden" name="account_id" value="<%= account_id %>" />
+    <!-- Hidden account_id -->
+    <input type="hidden" name="account_id" value="<%= account_id %>" />
 
-      <button type="submit">Update Account</button>
-    </form>
-  </section>
+    <button type="submit">Update Account</button>
+  </form>
+</section>
 
-  <!-- Formulario 2: Change password -->
-  <section>
-    <h2>Change Password</h2>
-    <p>
-      Enter a new password to replace your current one.
-      It must meet the password requirements (length, characters, etc.).
-    </p>
-    <form action="/account/update-password" method="post" id="passwordUpdateForm">
-      <label for="account_password">New Password</label>
-      <input
-        type="password"
-        id="account_password"
-        name="account_password"
-        required
-      />
+<!-- Formulario 2: Change password -->
+<section>
+  <h2>Change Password</h2>
+  <p>
+    Enter a new password to replace your current one. Your password must be at
+    least 12 characters and include lowercase, uppercase, numeric, and special
+    characters.
+  </p>
+  <form action="/account/update-password" method="post" id="passwordUpdateForm" novalidate>
+    <label for="account_password">New Password</label>
+    <input
+      type="password"
+      id="account_password"
+      name="account_password"
+      required
+      minlength="12"
+      autocomplete="new-password"
+    />
 
-      <!-- Hidden account_id -->
-      <input type="hidden" name="account_id" value="<%= account_id %>" />
+    <!-- Hidden account_id -->
+    <input type="hidden" name="account_id" value="<%= account_id %>" />
 
-      <button type="submit">Change Password</button>
-    </form>
-  </section>
-</main>
+    <button type="submit">Change Password</button>
+  </form>
+</section>
