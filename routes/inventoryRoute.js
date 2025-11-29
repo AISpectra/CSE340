@@ -7,10 +7,11 @@ const utilities = require("../utilities")
 const invValidate = require("../utilities/inventory-validation")
 
 /* ***************************
- *  Management view
+ *  Inventory Management view (solo Employee/Admin)
  * ************************** */
 router.get(
   "/",
+  utilities.checkAccountType,                    // 🔒 Solo Employee / Admin
   utilities.handleErrors(invController.buildManagement)
 )
 
@@ -19,6 +20,7 @@ router.get(
  * ************************** */
 router.get(
   "/add-classification",
+  utilities.checkAccountType,                    // 🔒 Solo Employee / Admin
   utilities.handleErrors(invController.buildAddClassification)
 )
 
@@ -27,6 +29,7 @@ router.get(
  * ************************** */
 router.post(
   "/add-classification",
+  utilities.checkAccountType,                    // 🔒 Solo Employee / Admin
   invValidate.classificationRules(),
   invValidate.checkClassData,
   utilities.handleErrors(invController.addClassification)
@@ -37,6 +40,7 @@ router.post(
  * ************************** */
 router.get(
   "/add-inventory",
+  utilities.checkAccountType,                    // 🔒 Solo Employee / Admin
   utilities.handleErrors(invController.buildAddInventory)
 )
 
@@ -45,13 +49,14 @@ router.get(
  * ************************** */
 router.post(
   "/add-inventory",
+  utilities.checkAccountType,                    // 🔒 Solo Employee / Admin
   invValidate.inventoryRules(),
   invValidate.checkInvData,
   utilities.handleErrors(invController.addInventory)
 )
 
 /* ***************************
- *  Build inventory by classification view
+ *  Build inventory by classification view (PÚBLICO)
  * ************************** */
 router.get(
   "/type/:classificationId",
@@ -59,52 +64,58 @@ router.get(
 )
 
 /* ***************************
- *  Build single vehicle detail view
+ *  Build single vehicle detail view (PÚBLICO)
  * ************************** */
 router.get(
   "/detail/:invId",
   utilities.handleErrors(invController.buildByInvId)
 )
 
+/* ***************************
+ *  Inventory JSON for management (solo Employee/Admin)
+ * ************************** */
 router.get(
   "/getInventory/:classification_id",
+  utilities.checkAccountType,                    // 🔒 Solo Employee / Admin
   utilities.handleErrors(invController.getInventoryJSON)
 )
 
-
+/* ***************************
+ *  Edit Inventory view
+ * ************************** */
 router.get(
   "/edit/:inv_id",
-  utilities.checkLogin, 
+  utilities.checkAccountType,                    // 🔒 Solo Employee / Admin
   utilities.handleErrors(invController.editInventoryView)
 )
 
-// Process inventory update
+/* ***************************
+ *  Process inventory update
+ * ************************** */
 router.post(
   "/update",
-  invValidate.inventoryRules(),
-  invValidate.checkInvData,
+  utilities.checkAccountType,                    // 🔒 Solo Employee / Admin
+  invValidate.inventoryRules(),                  // mismas reglas que "add"
+  invValidate.checkUpdateData,                   // ⬅️ devuelve a edit-inventory si hay errores
   utilities.handleErrors(invController.updateInventory)
 )
 
-// 🔁 UPDATE vehículo
-router.post(
-  "/update",
-  invValidate.inventoryRules(),   // mismas reglas que "add"
-  invValidate.checkUpdateData,       // nuevo middleware
-  utilities.handleErrors(invController.updateInventory)
-)
-
-// Delete inventory item - show confirmation view
+/* ***************************
+ *  Delete inventory item - show confirmation view
+ * ************************** */
 router.get(
   "/delete/:inv_id",
+  utilities.checkAccountType,                    // 🔒 Solo Employee / Admin
   utilities.handleErrors(invController.buildDeleteInventory)
 )
 
-// Delete inventory item - process delete
+/* ***************************
+ *  Delete inventory item - process delete
+ * ************************** */
 router.post(
   "/delete",
+  utilities.checkAccountType,                    // 🔒 Solo Employee / Admin
   utilities.handleErrors(invController.deleteInventory)
 )
-
 
 module.exports = router

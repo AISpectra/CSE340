@@ -175,6 +175,28 @@ Util.checkJWTToken = (req, res, next) => {
   }
 }
 
+/* ***************************
+ *  Check account type (Employee/Admin)
+ * ************************** */
+Util.checkAccountType = (req, res, next) => {
+  const accountData = res.locals.accountData
+
+  if (!accountData) {
+    req.flash("notice", "Please log in to access that page.")
+    return res.redirect("/account/login")
+  }
+
+  if (
+    accountData.account_type === "Employee" ||
+    accountData.account_type === "Admin"
+  ) {
+    return next()
+  }
+
+  req.flash("notice", "You are not authorized to access that page.")
+  return res.redirect("/account/login")
+}
+
 /* ****************************************
  *  Check Login
  * ************************************ */
