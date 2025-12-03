@@ -11,12 +11,12 @@
         <form action="/favorites/remove" method="post">
           <input type="hidden" name="inv_id" value="<%= vehicleData.inv_id %>">
           <input type="hidden" name="redirectTo" value="/inv/detail/<%= vehicleData.inv_id %>">
-          <button type="submit">Quitar de favoritos</button>
+          <button type="submit" class="favorite-btn favorite-btn--remove">Quitar de favoritos</button>
         </form>
       <% } else { %>
         <form action="/favorites/add" method="post">
           <input type="hidden" name="inv_id" value="<%= vehicleData.inv_id %>">
-          <button type="submit">Agregar a favoritos</button>
+          <button type="submit" class="favorite-btn favorite-btn--add">Agregar a favoritos</button>
         </form>
       <% } %>
     </div>
