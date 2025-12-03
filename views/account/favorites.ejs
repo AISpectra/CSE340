@@ -1,0 +1,38 @@
+<main id="favorites">
+  <h1><%= title %></h1>
+
+  <%- messages() %>
+
+  <% if (favorites && favorites.length > 0) { %>
+    <ul class="favorite-list">
+      <% favorites.forEach(fav => { %>
+        <li class="favorite-card">
+          <div class="favorite-card__media">
+            <% if (fav.inv_thumbnail) { %>
+              <a href="/inv/detail/<%= fav.inv_id %>">
+                <img src="<%= fav.inv_thumbnail %>" alt="Image of <%= fav.inv_make %> <%= fav.inv_model %>">
+              </a>
+            <% } %>
+          </div>
+          <div class="favorite-card__body">
+            <h2>
+              <a href="/inv/detail/<%= fav.inv_id %>">
+                <%= fav.inv_year %> <%= fav.inv_make %> <%= fav.inv_model %>
+              </a>
+            </h2>
+            <p class="favorite-card__price">
+              $<%= new Intl.NumberFormat('en-US').format(fav.inv_price) %>
+            </p>
+            <p class="favorite-card__description"><%= fav.inv_description %></p>
+            <form action="/favorites/remove" method="post">
+              <input type="hidden" name="inv_id" value="<%= fav.inv_id %>">
+              <button type="submit">Quitar de favoritos</button>
+            </form>
+          </div>
+        </li>
+      <% }) %>
+    </ul>
+  <% } else { %>
+    <p>Todavía no tienes vehículos favoritos.</p>
+  <% } %>
+</main>

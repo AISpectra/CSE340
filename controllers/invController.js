@@ -1,5 +1,6 @@
 // controllers/invController.js
 const invModel = require("../models/inventory-model")
+const favoriteModel = require("../models/favoriteModel")
 const utilities = require("../utilities/")
 
 const invCont = {}
@@ -177,9 +178,18 @@ invCont.buildByClassificationId = async function (req, res, next) {
  *  Build single vehicle detail view
  * ************************** */
 invCont.buildByInvId = async function (req, res, next) {
-  const invId = req.params.invId
+  const invId = parseInt(req.params.invId)
   const vehicleData = await invModel.getVehicleByInvId(invId)
   let nav = await utilities.getNav()
+
+  let isFavorite = false
+
+  if (res.locals.loggedin && res.locals.accountData) {
+    isFavorite = await favoriteModel.isFavorite(
+      res.locals.accountData.account_id,
+      invId
+    )
+  }
 
   if (!vehicleData) {
     const error = new Error("Sorry, that vehicle could not be found.")
@@ -194,6 +204,8 @@ invCont.buildByInvId = async function (req, res, next) {
     title,
     nav,
     details,
+    vehicleData,
+    isFavorite,
   })
 }
 
