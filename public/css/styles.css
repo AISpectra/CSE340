@@ -163,6 +163,14 @@ img{max-width:100%;height:auto;display:block}
 .btn:hover{ background:var(--brand-dark); transform:scale(1.03); }
 
 /* ===== Favorites ===== */
+.favorite-list{
+  list-style:none;
+  padding:0;
+  margin:1.25rem 0 0;
+  display:grid;
+  gap:1.25rem;
+}
+
 .favorite-actions{
   display:flex;
   gap:.5rem;
