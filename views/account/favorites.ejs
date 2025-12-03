@@ -26,7 +26,7 @@
             <p class="favorite-card__description"><%= fav.inv_description %></p>
             <form action="/favorites/remove" method="post">
               <input type="hidden" name="inv_id" value="<%= fav.inv_id %>">
-              <button type="submit">Quitar de favoritos</button>
+              <button type="submit" class="favorite-btn favorite-btn--remove">Quitar de favoritos</button>
             </form>
           </div>
         </li>

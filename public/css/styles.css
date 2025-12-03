@@ -162,6 +162,45 @@ img{max-width:100%;height:auto;display:block}
 }
 .btn:hover{ background:var(--brand-dark); transform:scale(1.03); }
 
+/* ===== Favorites ===== */
+.favorite-actions{
+  display:flex;
+  gap:.5rem;
+  align-items:center;
+  margin:1rem 0;
+}
+
+.favorite-actions form{ margin:0; }
+
+.favorite-btn{
+  background:var(--brand);
+  color:#000;
+  border:1px solid var(--brand);
+  padding:.55rem 1rem;
+  border-radius:.55rem;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:0 2px 4px rgba(0,0,0,.15);
+  transition:background .2s ease, transform .1s ease-in-out, color .2s ease;
+}
+
+.favorite-btn:hover{
+  background:var(--brand-dark);
+  transform:scale(1.03);
+}
+
+.favorite-btn--remove{
+  background:#fff;
+  color:var(--brand);
+}
+
+.favorite-btn--remove:hover{
+  background:#e7f6fc;
+  color:#000;
+}
+
+.favorite-card form{ margin-top:.85rem; }
+
 /* Coche detrás (móvil también) */
 .hero-art{
   position:absolute;
